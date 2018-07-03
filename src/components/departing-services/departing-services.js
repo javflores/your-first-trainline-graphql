@@ -3,7 +3,7 @@ import React from 'react';
 import DepartingService from './departing-service';
 import './departing-services.css';
 
-const DepartingServices = ({data: {origin, departingServices}, originChanged}) =>
+const DepartingServices = ({departingServices, origin, originChanged}) =>
   <div className="departing-services">
     <div className="departing-service-search">
       <label>Trains from...</label>

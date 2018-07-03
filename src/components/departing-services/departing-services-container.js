@@ -3,10 +3,17 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import DepartingServices from './departing-services';
+import Spinner from '../loading';
+
+const ORIGIN = "WAT";
 
 const DepartingServicesContainer = ({data}) => {
-  if(!data || !data.departingServices) return null;
-  return <DepartingServices data={data} originChanged={() => {}}/>
+  const {loading, departingServices} = data;
+  if(loading) return <Spinner />;
+  
+  return <DepartingServices origin={ORIGIN}
+                            departingServices={departingServices}
+                            originChanged={() => {}}/>
 };
 
 const getDepartingServicesFrom = gql`
@@ -25,7 +32,7 @@ const getDepartingServicesFrom = gql`
 export default graphql(getDepartingServicesFrom, {
   options: () => ({
     variables: {
-      origin: "WAT"
+      origin: ORIGIN
     }
   })
 })(DepartingServicesContainer);
