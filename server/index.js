@@ -1,29 +1,12 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
-const { makeExecutableSchema } = require('graphql-tools');
+const { graphiqlExpress } = require('apollo-server-express');
+
+const graphql = require('./graphql');
 
 const PORT = process.env.PORT || 9000;
 const app = express();
 
-const typeDefs = `
-  type Query {
-    status: String
-  }
-`;
-
-const resolvers = {
-  Query: {
-    status: () => "GraphQL status: OK"
-  }
-};
-
-const graphQLSchema =  makeExecutableSchema({
-  typeDefs,
-  resolvers,
-});
-
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema: graphQLSchema }))
+app.use('/graphql', graphql);
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 
