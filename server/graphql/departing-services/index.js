@@ -1,4 +1,5 @@
 const client = require('superagent');
+const stations = require('../../../stations.json');
 
 const departingServicesTypes = `
   type DepartingService {
@@ -8,14 +9,14 @@ const departingServicesTypes = `
   }
 `;
 
-const getDepartingServicesResolver = async () => {
-  const departuresEndpoint = `https://realtime.thetrainline.com/departures/wat`;
+const getDepartingServicesResolver = async ({origin = "WAT"}) => {
+  const departuresEndpoint = `https://realtime.thetrainline.com/departures/${origin}`;
   const response = await client.get(departuresEndpoint);
   
   return response.body.services.map((service) => {
     return {
-      origin: 'WAT',
-      destination: readDestination(service),
+      origin: mapToFullName(origin),
+      destination: mapToFullName(readDestination(service)),
       operator: service.serviceOperator
     };
   });
@@ -25,9 +26,13 @@ const readDestination = (service) => {
   return service.destinationList[0].crs;
 };
 
+function mapToFullName(code){
+  return stations.stations.find(x => x.crs === code).name;
+}
+
 const departingServicesResolvers = {
   Query: {
-    departingServices: () => getDepartingServicesResolver()
+    departingServices: (root, args) => getDepartingServicesResolver(args)
   }
 };
 
