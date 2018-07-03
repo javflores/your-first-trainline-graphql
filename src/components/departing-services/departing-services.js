@@ -7,7 +7,7 @@ const DepartingServices = ({departingServices, origin, originChanged}) =>
   <div className="departing-services">
     <div className="departing-service-search">
       <label>Trains from...</label>
-      <input onChange={originChanged}
+      <input onChange={(e) => originChanged(e.target.value)}
              value={origin}/>
     </div>
     <ul>

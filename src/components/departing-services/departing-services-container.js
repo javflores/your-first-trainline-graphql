@@ -1,19 +1,20 @@
 import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import {compose, withStateHandlers} from "recompose";
 
 import DepartingServices from './departing-services';
 import Spinner from '../loading';
 
-const ORIGIN = "WAT";
+const INITIAL_ORIGIN = "WAT";
 
-const DepartingServicesContainer = ({data}) => {
+const DepartingServicesContainer = ({data, origin, originChanged}) => {
   const {loading, departingServices} = data;
   if(loading) return <Spinner />;
   
-  return <DepartingServices origin={ORIGIN}
+  return <DepartingServices origin={origin}
                             departingServices={departingServices}
-                            originChanged={() => {}}/>
+                            originChanged={originChanged}/>
 };
 
 const getDepartingServicesFrom = gql`
@@ -29,10 +30,19 @@ const getDepartingServicesFrom = gql`
   }
 `;
 
-export default graphql(getDepartingServicesFrom, {
-  options: () => ({
-    variables: {
-      origin: ORIGIN
-    }
-  })
-})(DepartingServicesContainer);
+const enhance = compose(
+  withStateHandlers({
+    origin: INITIAL_ORIGIN
+  }, {
+    originChanged: () => (origin) => ({origin})
+  }),
+  graphql(getDepartingServicesFrom, {
+    options: ({origin}) => ({
+      variables: {
+        origin
+      }
+    })
+  }),
+);
+
+export default enhance(DepartingServicesContainer);
