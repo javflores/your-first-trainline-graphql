@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { graphqlExpress } = require('apollo-server-express');
+const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const { makeExecutableSchema } = require('graphql-tools');
 
 const PORT = process.env.PORT || 9000;
@@ -24,7 +24,7 @@ const graphQLSchema =  makeExecutableSchema({
 });
 
 app.use('/graphql', bodyParser.json(), graphqlExpress({ schema: graphQLSchema }))
-
+app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 
 app.get('/status', (req, res) => res.send('Express status: OK'));
