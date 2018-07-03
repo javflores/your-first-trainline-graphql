@@ -1,0 +1,92 @@
+.departing-service {
+    display: grid;
+    grid-template-columns: 24% 25% 30% 10%;
+    grid-gap: 8%;
+    background-color: white;
+    margin: 1px 7px;
+    padding: 20px 30px 20px 20px;
+    box-sizing: border-box; }
+@media (min-width: 664px) {
+    .departing-service {
+        grid-template-columns: 20% 25% 30% 10%;
+        grid-gap: 7%; } }
+
+.departing-service:hover {
+    background-color: #D7F3EC;
+    border-left: 5px solid midnightblue;
+    cursor: pointer; }
+.departing-service:hover .destination,
+.departing-service:hover .platform {
+    margin-bottom: 20px; }
+
+.scheduled-time {
+    font-weight: 800;
+    font-size: 20px;
+    text-align: center; }
+@media (min-width: 664px) {
+    .scheduled-time {
+        font-size: 28px; } }
+
+.destination {
+    font-weight: 700;
+    margin: 5px 0;
+    font-size: 18px;
+    text-align: left; }
+@media (min-width: 664px) {
+    .destination {
+        font-size: 26px;
+        line-height: 1.5em; } }
+
+.operator {
+    font-weight: 600;
+    margin: 5px 0;
+    color: darkgrey;
+    font-size: 16px;
+    text-align: left; }
+@media (min-width: 664px) {
+    .operator {
+        font-size: 26px;
+        line-height: 1.5em; } }
+
+.platform {
+    font-weight: 700;
+    margin: 5px 0;
+    font-size: 16px;
+    text-align: right; }
+@media (min-width: 664px) {
+    .platform {
+        font-size: 26px;
+        line-height: 1.5em; } }
+
+.real-time-update {
+    font-weight: 700;
+    margin: 5px 0;
+    font-size: 16px;
+    text-align: right; }
+@media (min-width: 664px) {
+    .real-time-update {
+        font-size: 26px;
+        line-height: 1.5em; } }
+
+.onTime {
+    color: green; }
+
+.delayed {
+    color: red; }
+
+.view-service {
+    border: solid darkslateblue;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    margin: 60% 0; }
+@media (min-width: 664px) {
+    .view-service {
+        border-width: 0 6px 6px 0;
+        padding: 20%; } }
+
+@media (min-width: 664px) {
+    .departing-service-column {
+        margin-top: 10%; } }

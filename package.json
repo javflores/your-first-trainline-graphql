@@ -1,0 +1,40 @@
+{
+  "name": "your-first-trainline-graphql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javflores/your-first-trainline-graphql.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/javflores/your-first-trainline-graphql/issues"
+  },
+  "homepage": "https://github.com/javflores/your-first-trainline-graphql#readme",
+  "devDependencies": {
+    "react-scripts": "^1.1.4"
+  },
+  "dependencies": {
+    "apollo-cache-inmemory": "^1.2.5",
+    "apollo-client": "^2.3.5",
+    "apollo-link": "^1.2.2",
+    "apollo-link-http": "^1.5.4",
+    "classnames": "^2.2.6",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
+    "css-loader": "0.28.7",
+    "react": "^16.4.1",
+    "react-apollo": "^2.1.8",
+    "react-dom": "^16.4.1",
+    "react-router-dom": "^4.3.1"
+  }
+}
