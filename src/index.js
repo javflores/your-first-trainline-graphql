@@ -4,6 +4,7 @@ import {
   Route,
   BrowserRouter as Router,
   Switch,
+  Redirect,
 } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import apolloClient from './apollo-client';
@@ -16,7 +17,10 @@ ReactDOM.render(
   <ApolloProvider client={apolloClient}>
     <Router>
     <Switch>
-    <Route exact path="/" component={DepartingServices}/>
+    <Route exact path="/" render={() => (
+      <Redirect to="/live/departures"/>
+    )}/>
+    <Route exact path="/live/departures" component={DepartingServices}/>
   </Switch >
   </Router>
   </ApolloProvider>,
