@@ -2,11 +2,12 @@ import React from 'react';
 import DepartingServices from './departing-services';
 
 const DepartingServicesContainer = () => {
-  return <DepartingServices data={getData()}/>
+  return <DepartingServices data={getData()} originChanged={() => {}}/>
 };
 
 function getData(){
   return {
+    origin: "WAT",
     departingServices: [{
       scheduledTime: "10:02",
       destination: "London",

@@ -5,7 +5,8 @@
     outline: 0;
     list-style: none;
     overflow: visible;
-    border-radius: 0; }
+    border-radius: 0;
+    background-color: #21314d; }
 @media (min-width: 664px) {
     .departing-services {
         width: 80%;
@@ -14,3 +15,26 @@
     .departing-services {
         width: 50%;
         margin-left: 30%; } }
+
+.departing-service-search {
+    margin: 20px;
+    width: 80%;
+    padding: 10px;
+    font-size: 24px;
+    line-height: 3;
+}
+
+.departing-service-search input {
+    padding: 10px;
+     width: 50%;
+     margin-left: 10px;
+    font-size: 24px;
+ }
+
+
+.departing-service-search label {
+    font-weight: 700;
+    transition: all .1s linear;
+    color: #fff;
+
+}
