@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start:server": "node ./server/index.js",
+    "watch:server": "nodemon ./server/index.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -21,6 +23,7 @@
   },
   "homepage": "https://github.com/javflores/your-first-trainline-graphql#readme",
   "devDependencies": {
+    "nodemon": "^1.17.5",
     "react-scripts": "^1.1.4"
   },
   "dependencies": {
@@ -29,9 +32,10 @@
     "apollo-link": "^1.2.2",
     "apollo-link-http": "^1.5.4",
     "classnames": "^2.2.6",
+    "css-loader": "0.28.7",
+    "express": "^4.16.3",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
-    "css-loader": "0.28.7",
     "react": "^16.4.1",
     "react-apollo": "^2.1.8",
     "react-dom": "^16.4.1",
