@@ -6,14 +6,31 @@ const { makeExecutableSchema } = require('graphql-tools');
 const router = express.Router();
 
 const typeDefs = `
+  type DepartingService {
+    origin: String
+    destination: String
+  }
+  
   type Query {
     status: String
+    departingServices: [DepartingService]
   }
 `;
 
+const getDepartingServicesResolver = () => {
+  return [{
+    origin: "Euston",
+    destination: "Birmingham",
+  }, {
+    origin: "Euston",
+    destination: "Manchester"
+  }];
+};
+
 const resolvers = {
   Query: {
-    status: () => "GraphQL status: OK"
+    status: () => "GraphQL status: OK",
+    departingServices: () => getDepartingServicesResolver()
   }
 };
 
