@@ -91,6 +91,13 @@ const departingServicesResolvers = {
   }
 };
 
+setInterval(async function(){
+  const payload = {
+    servicesChanged: await getDepartingServicesResolver("WAT")
+  };
+  pubsub.publish('servicesChanged', payload);
+}, 10000);
+
 module.exports = {
   departingServicesTypes,
   departingServicesResolvers
