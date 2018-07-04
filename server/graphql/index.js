@@ -6,12 +6,18 @@ const { merge } = require('lodash');
 
 const { departingServicesTypes, departingServicesResolvers } = require('./departing-services');
 
-const router = express.Router();
+const graphql = express.Router();
 
 const queryDefinitions = `
   type Query {
     departingServices(origin: String): [DepartingService]
     status: String
+  }
+`;
+
+const subscriptionDefinitions = `
+  type Subscription {
+    servicesChanged(origin: String): [DepartingService]
   }
 `;
 
@@ -24,12 +30,16 @@ const resolvers = merge(statusResolver, departingServicesResolvers);
 
 const graphQLSchema =  makeExecutableSchema({
   typeDefs: [
-      queryDefinitions,
-      departingServicesTypes
+    queryDefinitions,
+    subscriptionDefinitions,
+    departingServicesTypes
   ],
   resolvers
 });
 
-router.post('/', bodyParser.json(), graphqlExpress({ schema: graphQLSchema }));
+graphql.post('/', bodyParser.json(), graphqlExpress({ schema: graphQLSchema }));
 
-module.exports = router;
+module.exports = {
+  graphql,
+  graphQLSchema
+};

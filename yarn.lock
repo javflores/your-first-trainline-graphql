@@ -402,6 +402,10 @@ async-each@^1.0.0:
   version "1.0.1"
   resolved "http://norewrite_artifactory.corp.local/artifactory/api/npm/npm-virtual/async-each/-/async-each-1.0.1.tgz#19d386a1d9edc6e7c1c85d388aedbcc56d33602d"
 
+async-limiter@~1.0.0:
+  version "1.0.0"
+  resolved "http://norewrite_artifactory.corp.local/artifactory/api/npm/npm-virtual/async-limiter/-/async-limiter-1.0.0.tgz#78faed8c3d074ab81f22b4e985d79e8738f720f8"
+
 async@^1.4.0, async@^1.5.2:
   version "1.5.2"
   resolved "http://norewrite_artifactory.corp.local/artifactory/api/npm/npm-virtual/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
@@ -1115,6 +1119,10 @@ babel-types@^6.18.0, babel-types@^6.19.0, babel-types@^6.23.0, babel-types@^6.24
 babylon@^6.17.0, babylon@^6.18.0:
   version "6.18.0"
   resolved "http://norewrite_artifactory.corp.local/artifactory/api/npm/npm-virtual/babylon/-/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
+
+backo2@^1.0.2:
+  version "1.0.2"
+  resolved "http://norewrite_artifactory.corp.local/artifactory/api/npm/npm-virtual/backo2/-/backo2-1.0.2.tgz#31ab1ac8b129363463e35b3ebb69f4dfcfba7947"
 
 balanced-match@^0.4.2:
   version "0.4.2"
@@ -2619,7 +2627,7 @@ event-stream@~3.3.0:
     stream-combiner "~0.0.4"
     through "~2.3.1"
 
-eventemitter3@^3.0.0:
+eventemitter3@^3.0.0, eventemitter3@^3.1.0:
   version "3.1.0"
   resolved "http://norewrite_artifactory.corp.local/artifactory/api/npm/npm-virtual/eventemitter3/-/eventemitter3-3.1.0.tgz#090b4d6cdbd645ed10bf750d4b5407942d7ba163"
 
@@ -3192,6 +3200,12 @@ graphql-extensions@^0.0.x, graphql-extensions@~0.0.9:
   dependencies:
     core-js "^2.5.3"
     source-map-support "^0.5.1"
+
+graphql-subscriptions@^0.5.8:
+  version "0.5.8"
+  resolved "http://norewrite_artifactory.corp.local/artifactory/api/npm/npm-virtual/graphql-subscriptions/-/graphql-subscriptions-0.5.8.tgz#13a6143c546bce390404657dc73ca501def30aa7"
+  dependencies:
+    iterall "^1.2.1"
 
 graphql-tag@^2.9.2:
   version "2.9.2"
@@ -6734,6 +6748,16 @@ style-loader@0.19.0:
     loader-utils "^1.0.2"
     schema-utils "^0.3.0"
 
+subscriptions-transport-ws@^0.9.12:
+  version "0.9.12"
+  resolved "http://norewrite_artifactory.corp.local/artifactory/api/npm/npm-virtual/subscriptions-transport-ws/-/subscriptions-transport-ws-0.9.12.tgz#0deb945134890d8694a93a090bacc6459c4478cc"
+  dependencies:
+    backo2 "^1.0.2"
+    eventemitter3 "^3.1.0"
+    iterall "^1.2.1"
+    symbol-observable "^1.0.4"
+    ws "^5.2.0"
+
 superagent@^3.8.3:
   version "3.8.3"
   resolved "http://norewrite_artifactory.corp.local/artifactory/api/npm/npm-virtual/superagent/-/superagent-3.8.3.tgz#460ea0dbdb7d5b11bc4f78deba565f86a178e128"
@@ -7455,6 +7479,12 @@ write@^0.2.1:
   resolved "http://norewrite_artifactory.corp.local/artifactory/api/npm/npm-virtual/write/-/write-0.2.1.tgz#5fc03828e264cea3fe91455476f7a3c566cb0757"
   dependencies:
     mkdirp "^0.5.1"
+
+ws@^5.2.0:
+  version "5.2.1"
+  resolved "http://norewrite_artifactory.corp.local/artifactory/api/npm/npm-virtual/ws/-/ws-5.2.1.tgz#37827a0ba772d072a843c3615b0ad38bcdb354eb"
+  dependencies:
+    async-limiter "~1.0.0"
 
 xdg-basedir@^3.0.0:
   version "3.0.0"

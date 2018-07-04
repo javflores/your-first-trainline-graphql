@@ -1,5 +1,6 @@
 const client = require('superagent');
 const stations = require('../../../stations.json');
+const pubsub = require('../../graphql/pub-sub');
 
 const ON_TIME = 'On time';
 const DELAYED = 'Delayed';
@@ -82,6 +83,11 @@ function readPlatform(service){
 const departingServicesResolvers = {
   Query: {
     departingServices: (root, args) => getDepartingServicesResolver(args)
+  },
+  Subscription: {
+    servicesChanged: {
+      subscribe: () => pubsub.asyncIterator('servicesChanged'),
+    }
   }
 };
 
