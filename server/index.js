@@ -1,14 +1,22 @@
 const { ApolloServer, gql } = require('apollo-server');
+const client = require('superagent');
 
-const getDepartingServicesResolver = () => {
-  return [{
-    origin: "Euston",
-    destination: "Birmingham",
-  }, {
-    origin: "Euston",
-    destination: "Manchester"
-  }];
+const getDepartingServicesResolver = async () => {
+  const departuresEndpoint = `https://realtime.thetrainline.com/departures/wat`;
+  const response = await client.get(departuresEndpoint);
+  
+  return response.body.services.map((service) => {
+    return {
+      origin: 'WAT',
+      destination: readDestination(service),
+      operator: service.serviceOperator
+    };
+  });
 };
+
+function readDestination(service){
+  return service.destinationList[0].crs;
+}
 
 const resolvers = {
   Query: {
@@ -29,6 +37,7 @@ const typeDefs = gql`
   type DepartingService {
     origin: String
     destination: String
+    operator: String
   }
   
   type Query {
