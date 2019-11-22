@@ -1,28 +1,39 @@
 const { ApolloServer, gql } = require('apollo-server');
 
+const getDepartingServicesResolver = () => {
+  return [{
+    origin: "Euston",
+    destination: "Birmingham",
+  }, {
+    origin: "Euston",
+    destination: "Manchester"
+  }];
+};
+
 const resolvers = {
   Query: {
     status: () => ({
       code: 200,
       message: "GraphQL status: OK"
-    })
+    }),
+    departingServices: () => getDepartingServicesResolver()
   }
 };
 
 const typeDefs = gql`
-  # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
-
-  # This "Status" type defines the queryable fields of the status of an api.
   type Status {
     code: Int
     message: String
   }
-
-  # The "Query" type is special: it lists all of the available queries that
-  # clients can execute, along with the return type for each. In this
-  # case, the "status" query returns Status (defined above).
+  
+  type DepartingService {
+    origin: String
+    destination: String
+  }
+  
   type Query {
     status: Status
+    departingServices: [DepartingService]
   }
 `;
 
