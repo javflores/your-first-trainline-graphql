@@ -1,11 +1,9 @@
 const { ApolloServer, gql } = require('apollo-server');
-const client = require('superagent');
+const DepartingServices = require( "./data-sources/departing-services");
 
-const getDepartingServicesResolver = async () => {
-  const departuresEndpoint = `https://realtime.thetrainline.com/departures/wat`;
-  const response = await client.get(departuresEndpoint);
-  
-  return response.body.services.map((service) => {
+const getDepartingServicesResolver = async (dataSources) => {
+  const departures = await dataSources.departingServices.getDepartures();
+  return departures.services.map((service) => {
     return {
       origin: 'WAT',
       destination: readDestination(service),
@@ -24,7 +22,7 @@ const resolvers = {
       code: 200,
       message: "GraphQL status: OK"
     }),
-    departingServices: () => getDepartingServicesResolver()
+    departingServices: async (_source, _args, { dataSources }) => getDepartingServicesResolver(dataSources)
   }
 };
 
@@ -46,11 +44,16 @@ const typeDefs = gql`
   }
 `;
 
-// The ApolloServer constructor requires two parameters: your schema
-// definition and your set of resolvers.
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  dataSources: () => {
+    return {
+      departingServices: new DepartingServices()
+    };
+  },
+});
 
-// The `listen` method launches a web server.
 server.listen().then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
 });
