@@ -6,8 +6,8 @@ class DepartingServices extends RESTDataSource {
     this.baseURL = 'https://realtime.thetrainline.com/';
   }
   
-  async getDepartures() {
-    return this.get('departures/wat');
+  async getDepartures(origin) {
+    return this.get(`departures/${origin}`);
   }
 }
 
